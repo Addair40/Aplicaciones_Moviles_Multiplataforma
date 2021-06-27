@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:operaciones_basicas/pages/operaciones_page.dart';
 
 class MyApp extends StatelessWidget {
-  static const String _tittle = 'OPERACIONES BASICAS';
+  static const String _tittle = 'BIENVENIDO A OPERACIONES BASICAS';
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: _tittle,
       home: Operador(),
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.red
       ),
     );
   }
@@ -29,14 +29,16 @@ class _OperadorState extends State<Operador> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("OPERACIONES BASICAS",
+        title: Text("BIENVENIDO A OPERACIONES BASICAS",
+
             style: TextStyle(
-              fontSize: 35.0,
-              fontFamily: 'Raleway',
+              fontSize: 80.0,
+              fontFamily: 'Arial',
             )),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          label: Text("OPERACIONES +-*/"),
+          label: Text("SIGUIENTE"),
+                backgroundColor: Colors.red,
           onPressed: () {
             Navigator.of(context)
                 .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
