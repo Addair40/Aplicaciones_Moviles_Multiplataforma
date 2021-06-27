@@ -6,123 +6,113 @@ class Operadorespage extends StatefulWidget {
   @override
   _OperadorespageState createState() => _OperadorespageState();
 }
-
-
 class _OperadorespageState extends State<Operadorespage> {
-  final valor_one = TextEditingController();
-  final valor_two = TextEditingController();
-  int result = 0;
+  final opcionuno = TextEditingController();
+  final opciondos = TextEditingController();
 
-  div() {
-    // CONVERSION DE VALORES A ENTEROS
-    int Valor1 = int.parse(valor_one.text);
-    int Valor2 = int.parse(valor_two.text);
-    double respuesta_div = Valor1 / Valor2; //OPERACION DIVISION
-    result = respuesta_div as int;
-  }
-  sub() {
-    // CONVERSION DE VALORES A ENTEROS
-    int Valor1 = int.parse(valor_one.text);
-    int Valor2 = int.parse(valor_two.text);
-    int respuesta_sub = Valor1 - Valor2; //OPERACION RESTA
-    result = respuesta_sub;
-  }
-  sum() {
-    // CONVERSION DE VALORES A ENTEROS
-    int Valor1 = int.parse(valor_one.text);
-    int Valor2 = int.parse(valor_two.text);
-    int respuesta_sum = Valor1 + Valor2; //OPERACION SUMA
-    result = respuesta_sum;
-  }
-
-  mul() {
-    // CONVERSION DE VALORES A ENTEROS
-    int Valor1 = int.parse(valor_one.text);
-    int Valor2 = int.parse(valor_two.text);
-    int respuesta_mul = Valor1 * Valor2; //OPERACION MULTIPLICACION
-    result = respuesta_mul;
-  }
-
-
+  dynamic resultado = 0;
+  int valorone = 0;
+  int valortwo = 0;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('SUMA - RESTA - DIVIDIR - MULTIPLICAR ',
-            style: TextStyle(
-              fontSize: 40.0,
-              fontFamily: 'Arial',
-            )),
-        backgroundColor: Colors.red,
-      ),
+  void dispose() {
+    opcionuno.dispose();
+    opciondos.dispose();
+    super.dispose();
+  }
 
-      body: Center(child: Row(
-        children: [
-          Column(children: <Widget>[
-                SizedBox(
-                  height: 0.0,
+  @override
+  Widget build(BuildContext contex) {
+    return Scaffold(
+        appBar: AppBar(title: Text("SUMA - RESTA - MULTIPLICA - DIVIDE"),
+        ),
+        body: ListView(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          children: <Widget>[
+            Padding(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                child: Text("INGRESA NUMERO 1")),
+            Padding(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: TextField(controller: opcionuno,decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "INGRESA NUMERO 1",
                 ),
-                Text('------INGRESA EL VALOR 1------',style: TextStyle(
-                    fontFamily: 'Arial',
-                    fontSize: 40.0,
-                  ),
-                ),
-                TextField(
-                  controller: valor_one,),
-                SizedBox(height: 40.0,),
-                Text('------INGRESA EL VALOR  2------',style: TextStyle(
-                    fontFamily: 'Arial',
-                    fontSize: 40.0,
-                  ),
-                ),
-                TextField(
-                  controller: valor_two,
-                ),
-                SizedBox(height: 50.0,),
-                Text('$result',style: TextStyle(
-                    fontFamily: 'Arial',
-                    fontSize: 40.0,
-                  ),
-                ),
-                SizedBox(height: 40.0,),
-                FloatingActionButton(child: Text("SUMA"),
-                    backgroundColor: Colors.red,
-                    onPressed: () {
-                      setState(() {
-                        sum();
-                      });
-                    }),
-                SizedBox(height: 40.0,),
-                FloatingActionButton(child: Text("RESTA"),
-                    backgroundColor: Colors.green,
-                    onPressed: () {
-                      setState(() {
-                        sub();
-                      });
-                    }),
-                SizedBox(height: 40.0,),
-                FloatingActionButton(child: Text("MULT"),
-                    backgroundColor: Colors.yellow,
-                    onPressed: () {
-                      setState(() {
-                        mul();
-                      });
-                    }),
-                SizedBox(height: 40.0,),
-                FloatingActionButton(child: Text("DIVI"),
-                    backgroundColor: Colors.orange,
-                    onPressed: () {
-                      setState(() {
-                        div();
-                      });
-                    }),
-              ],
+                onChanged: (num) {
+                  print("$num");
+                },
+              ),
             ),
-        ],
-      ),
-      ),
-    );
+            Padding(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: Text("INGRESA NUMERO 2")),
+            Padding(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: TextField(controller: opciondos,decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "INGRESA NUMERO 2",
+                ),
+                onChanged: (num) {
+                  print("$num");
+                },
+             ),
+           ),   
+            
+            Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 10),child: Text("$resultado"),
+    ),            
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Padding(padding: const EdgeInsets.all(8.0),
+          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FloatingActionButton(heroTag: "hola",
+                  child: Icon(Icons.control_point_sharp),
+                   backgroundColor: Colors.green,
+                  onPressed: () {
+                    setState(() {
+                      valorone = int.parse(opcionuno.text);
+                      valortwo = int.parse(opciondos.text);
+                      resultado = valorone + valortwo;
+                    });
+                  }),
+              SizedBox(width: 15,
+              ),
+              FloatingActionButton(heroTag: "hola",
+                  child: Icon(Icons.do_disturb_on_rounded),
+                   backgroundColor: Colors.blue,
+                  onPressed: () {
+                    setState(() {
+                      valorone = int.parse(opcionuno.text);
+                      valortwo = int.parse(opciondos.text);
+                      resultado = valorone - valortwo;
+                    });
+                  }),
+              SizedBox(width: 15,
+              ),
+              FloatingActionButton(
+                  heroTag: "hola",
+                  child: Icon(Icons.cancel_rounded),
+                   backgroundColor: Colors.yellow,
+                  onPressed: () {
+                    setState(() {
+                      valorone = int.parse(opcionuno.text);
+                      valortwo = int.parse(opciondos.text);
+                      resultado = valorone * valortwo;
+                    });
+                  }),
+
+               SizedBox(
+                width: 15,
+              ),
+              FloatingActionButton(
+                  heroTag: "hola",
+                  child: Icon(Icons.north_east_sharp),
+                   backgroundColor: Colors.orange,
+                  onPressed: () {
+                    setState(() {
+                      valorone = int.parse(opcionuno.text);
+                      valortwo = int.parse(opciondos.text);
+                      resultado = valorone / valortwo;
+                    });
+                  }),
+            ],
+          ),
+        ));
   }
 }
